@@ -248,7 +248,7 @@ public class TileEntityMonitorRenderer extends TileEntitySpecialRenderer<TileMon
 
     public static void setupBufferFormat()
     {
-        int stride = FixedWidthFontRenderer.POSITION_COLOR_TEX.getSize();
+        int stride = FixedWidthFontRenderer.POSITION_COLOR_TEX.getNextOffset();
         GlStateManager.glVertexPointer( 3, GL11.GL_FLOAT, stride, 0 );
         GlStateManager.glEnableClientState( GL11.GL_VERTEX_ARRAY );
 

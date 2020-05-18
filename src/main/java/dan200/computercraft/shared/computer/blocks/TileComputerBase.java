@@ -492,7 +492,7 @@ public abstract class TileComputerBase extends TileGeneric implements IComputerT
     @Override
     public String getName()
     {
-        return hasCustomName() ? label : getBlockType().getTranslationKey();
+        return hasCustomName() ? label : getBlockType().getUnlocalizedName();
     }
 
     @Override

@@ -40,18 +40,18 @@ public final class TurtleModelLoader implements ICustomModelLoader
     @Override
     public boolean accepts( @Nonnull ResourceLocation name )
     {
-        return name.getNamespace().equals( ComputerCraft.MOD_ID )
-            && (name.getPath().equals( "turtle" ) || name.getPath().equals( "turtle_advanced" ));
+        return name.getResourceDomain().equals( ComputerCraft.MOD_ID )
+            && (name.getResourcePath().equals( "turtle" ) || name.getResourcePath().equals( "turtle_advanced" ));
     }
 
     @Nonnull
     @Override
     public IModel loadModel( @Nonnull ResourceLocation name ) throws Exception
     {
-        if( name.getNamespace().equals( ComputerCraft.MOD_ID ) )
+        if( name.getResourceDomain().equals( ComputerCraft.MOD_ID ) )
         {
             IModel colourModel = ModelLoaderRegistry.getModel( COLOUR_TURTLE_MODEL );
-            switch( name.getPath() )
+            switch( name.getResourcePath() )
             {
                 case "turtle":
                     return new TurtleModel( ModelLoaderRegistry.getModel( NORMAL_TURTLE_MODEL ), colourModel );

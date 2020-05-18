@@ -27,7 +27,7 @@ public class BlockWiredModemFull extends BlockGeneric
     {
         super( Material.ROCK );
         setHardness( 1.5f );
-        setTranslationKey( "computercraft:wired_modem_full" );
+        setUnlocalizedName( "computercraft:wired_modem_full" );
         setCreativeTab( ComputerCraft.mainCreativeTab );
         setDefaultState( blockState.getBaseState()
             .withProperty( MODEM_ON, false )

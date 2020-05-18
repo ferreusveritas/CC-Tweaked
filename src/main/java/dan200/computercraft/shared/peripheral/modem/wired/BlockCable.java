@@ -61,7 +61,7 @@ public class BlockCable extends BlockGeneric
     {
         super( Material.ROCK );
         setHardness( 1.5f );
-        setTranslationKey( "computercraft:cable" );
+        setUnlocalizedName( "computercraft:cable" );
         setCreativeTab( ComputerCraft.mainCreativeTab );
         setDefaultState( blockState.getBaseState()
             .withProperty( MODEM, BlockCableModemVariant.None )
@@ -100,12 +100,12 @@ public class BlockCable extends BlockGeneric
         if( meta < 6 )
         {
             state = state.withProperty( CABLE, false );
-            state = state.withProperty( MODEM, BlockCableModemVariant.from( EnumFacing.byIndex( meta ) ) );
+            state = state.withProperty( MODEM, BlockCableModemVariant.from( EnumFacing.getFront( meta ) ) );
         }
         else if( meta < 12 )
         {
             state = state.withProperty( CABLE, true );
-            state = state.withProperty( MODEM, BlockCableModemVariant.from( EnumFacing.byIndex( meta - 6 ) ) );
+            state = state.withProperty( MODEM, BlockCableModemVariant.from( EnumFacing.getFront( meta - 6 ) ) );
         }
         else if( meta == 13 )
         {
@@ -280,7 +280,7 @@ public class BlockCable extends BlockGeneric
             }
         }
 
-        return result == null ? null : new RayTraceResult( result.hitVec.add( pos.getX(), pos.getY(), pos.getZ() ), result.sideHit, pos );
+        return result == null ? null : new RayTraceResult( result.hitVec.addVector( pos.getX(), pos.getY(), pos.getZ() ), result.sideHit, pos );
     }
 
     @Override

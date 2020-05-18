@@ -111,7 +111,7 @@ public class FakeNetHandler extends NetHandlerPlayServer
 
     public FakeNetHandler( FakePlayer player )
     {
-        this( player.server, player );
+        this( player.mcServer, player );
     }
 
     public FakeNetHandler( MinecraftServer server, FakePlayer player )

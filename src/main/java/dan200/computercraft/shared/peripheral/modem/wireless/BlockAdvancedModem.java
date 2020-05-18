@@ -35,7 +35,7 @@ public class BlockAdvancedModem extends BlockGeneric
     {
         super( Material.ROCK );
         setHardness( 2.0f );
-        setTranslationKey( "computercraft:advanced_modem" );
+        setUnlocalizedName( "computercraft:advanced_modem" );
         setCreativeTab( ComputerCraft.mainCreativeTab );
         setDefaultState( blockState.getBaseState()
             .withProperty( FACING, EnumFacing.NORTH )
@@ -55,7 +55,7 @@ public class BlockAdvancedModem extends BlockGeneric
     @Deprecated
     public IBlockState getStateFromMeta( int meta )
     {
-        return getDefaultState().withProperty( FACING, EnumFacing.byIndex( meta ) );
+        return getDefaultState().withProperty( FACING, EnumFacing.getFront( meta ) );
     }
 
     @Override

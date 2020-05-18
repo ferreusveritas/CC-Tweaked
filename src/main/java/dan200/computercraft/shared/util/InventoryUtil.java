@@ -63,8 +63,8 @@ public final class InventoryUtil
         NBTTagCompound shareTagA = a.getItem().getNBTShareTag( a );
         NBTTagCompound shareTagB = b.getItem().getNBTShareTag( b );
         if( shareTagA == shareTagB ) return true;
-        if( shareTagA == null ) return shareTagB.isEmpty();
-        if( shareTagB == null ) return shareTagA.isEmpty();
+        if( shareTagA == null ) return shareTagB.hasNoTags();
+        if( shareTagB == null ) return shareTagA.hasNoTags();
         return shareTagA.equals( shareTagB );
     }
 
@@ -93,13 +93,13 @@ public final class InventoryUtil
 
         // Look for entity with inventory
         Vec3d vecStart = new Vec3d(
-            pos.getX() + 0.5 + 0.6 * side.getXOffset(),
-            pos.getY() + 0.5 + 0.6 * side.getYOffset(),
-            pos.getZ() + 0.5 + 0.6 * side.getZOffset()
+            pos.getX() + 0.5 + 0.6 * side.getFrontOffsetX(),
+            pos.getY() + 0.5 + 0.6 * side.getFrontOffsetY(),
+            pos.getZ() + 0.5 + 0.6 * side.getFrontOffsetZ()
         );
         EnumFacing dir = side.getOpposite();
         Vec3d vecDir = new Vec3d(
-            dir.getXOffset(), dir.getYOffset(), dir.getZOffset()
+            dir.getFrontOffsetX(), dir.getFrontOffsetY(), dir.getFrontOffsetZ()
         );
         Pair<Entity, Vec3d> hit = WorldUtil.rayTraceEntities( world, vecStart, vecDir, 1.1 );
         if( hit != null )

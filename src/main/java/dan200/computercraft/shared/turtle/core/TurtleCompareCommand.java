@@ -116,7 +116,7 @@ public class TurtleCompareCommand implements ITurtleCommand
         }
 
         // Otherwise just double check the translation is the same. It's a pretty good guess.
-        return selectedStack.getTranslationKey().equals( lookAtStack.getTranslationKey() )
+        return selectedStack.getUnlocalizedName().equals( lookAtStack.getUnlocalizedName() )
             ? TurtleCommandResult.success()
             : TurtleCommandResult.failure();
     }

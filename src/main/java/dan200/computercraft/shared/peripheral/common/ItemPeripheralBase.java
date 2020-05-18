@@ -51,7 +51,7 @@ public abstract class ItemPeripheralBase extends ItemBlock implements IPeriphera
 
     @Nonnull
     @Override
-    public String getTranslationKey( @Nonnull ItemStack stack )
+    public String getUnlocalizedName( @Nonnull ItemStack stack )
     {
         PeripheralType type = getPeripheralType( stack );
         switch( type )

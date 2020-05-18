@@ -26,7 +26,7 @@ public class ItemComputer extends ItemComputerBase
         super( block );
         setMaxStackSize( 64 );
         setHasSubtypes( true );
-        setTranslationKey( "computercraft:computer" );
+        setUnlocalizedName( "computercraft:computer" );
         setCreativeTab( ComputerCraft.mainCreativeTab );
         addPropertyOverride( new ResourceLocation( ComputerCraft.MOD_ID, "family" ), ( stack, world, player ) ->
             getFamily( stack ) == ComputerFamily.Advanced ? 1 : 0 );
@@ -76,7 +76,7 @@ public class ItemComputer extends ItemComputerBase
 
     @Nonnull
     @Override
-    public String getTranslationKey( @Nonnull ItemStack stack )
+    public String getUnlocalizedName( @Nonnull ItemStack stack )
     {
         switch( getFamily( stack ) )
         {

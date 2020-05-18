@@ -32,7 +32,7 @@ public class ItemTreasureDisk extends Item implements IMedia
     {
         setMaxStackSize( 1 );
         setHasSubtypes( true );
-        setTranslationKey( "computercraft:treasure_disk" );
+        setUnlocalizedName( "computercraft:treasure_disk" );
     }
 
     @Override

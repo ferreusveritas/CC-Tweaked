@@ -82,7 +82,7 @@ public final class NetworkHandler
     }
 
     private static final IMessageHandler<NetworkMessage, IMessage> MAIN_THREAD_HANDLER = ( packet, context ) -> {
-        IThreadListener listener = context.side == Side.CLIENT ? Minecraft.getMinecraft() : context.getServerHandler().player.server;
+        IThreadListener listener = context.side == Side.CLIENT ? Minecraft.getMinecraft() : context.getServerHandler().player.mcServer;
         if( listener.isCallingFromMinecraftThread() )
         {
             packet.handle( context );

@@ -97,8 +97,8 @@ public class JEIComputerCraft implements IModPlugin
             {
                 if( !(wrapper instanceof ICraftingRecipeWrapper) ) continue;
                 ResourceLocation id = ((ICraftingRecipeWrapper) wrapper).getRegistryName();
-                if( id != null && id.getNamespace().equals( ComputerCraft.MOD_ID )
-                    && (id.getPath().startsWith( "generated/turtle_" ) || id.getPath().startsWith( "generated/pocket_" )) )
+                if( id != null && id.getResourceDomain().equals( ComputerCraft.MOD_ID )
+                    && (id.getResourcePath().startsWith( "generated/turtle_" ) || id.getResourcePath().startsWith( "generated/pocket_" )) )
                 {
                     registry.hideRecipe( wrapper, VanillaRecipeCategoryUid.CRAFTING );
                 }

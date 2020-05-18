@@ -109,9 +109,9 @@ public final class MonitorHighlightRenderer
 
         buffer.pos( minX, minY, minZ ).color( 0, 0, 0, 0.4f ).endVertex();
         buffer.pos(
-            minX + direction.getXOffset() * (1 + EXPAND * 2),
-            minY + direction.getYOffset() * (1 + EXPAND * 2),
-            minZ + direction.getZOffset() * (1 + EXPAND * 2)
+            minX + direction.getFrontOffsetX() * (1 + EXPAND * 2),
+            minY + direction.getFrontOffsetY() * (1 + EXPAND * 2),
+            minZ + direction.getFrontOffsetZ() * (1 + EXPAND * 2)
         ).color( 0, 0, 0, 0.4f ).endVertex();
     }
 }

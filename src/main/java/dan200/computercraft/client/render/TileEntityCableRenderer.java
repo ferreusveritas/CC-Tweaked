@@ -77,7 +77,7 @@ public class TileEntityCableRenderer extends TileEntitySpecialRenderer<TileCable
         buffer.setTranslation( x - pos.getX(), y - pos.getY(), z - pos.getZ() );
         buffer.noColor();
 
-        ForgeHooksClient.setRenderLayer( block.getRenderLayer() );
+        ForgeHooksClient.setRenderLayer( block.getBlockLayer() );
 
         // See BlockRendererDispatcher#renderBlockDamage
         TextureAtlasSprite breakingTexture = mc.getTextureMapBlocks().getAtlasSprite( "minecraft:blocks/destroy_stage_" + destroyStage );

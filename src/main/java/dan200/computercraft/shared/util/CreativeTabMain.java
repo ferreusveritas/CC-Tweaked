@@ -23,8 +23,9 @@ public class CreativeTabMain extends CreativeTabs
     @Nonnull
     @Override
     @SideOnly( Side.CLIENT )
-    public ItemStack createIcon()
+    public ItemStack getTabIconItem()
     {
         return new ItemStack( ComputerCraft.Blocks.computer );
     }
+
 }

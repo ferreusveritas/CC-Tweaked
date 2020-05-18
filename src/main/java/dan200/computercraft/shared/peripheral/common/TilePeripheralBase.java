@@ -110,7 +110,7 @@ public abstract class TilePeripheralBase extends TileGeneric implements IPeriphe
         super.readFromNBT( nbt );
         if( nbt.hasKey( "dir" ) )
         {
-            m_dir = EnumFacing.byIndex( nbt.getInteger( "dir" ) );
+            m_dir = EnumFacing.getFront( nbt.getInteger( "dir" ) );
         }
         if( nbt.hasKey( "anim" ) )
         {
@@ -137,7 +137,7 @@ public abstract class TilePeripheralBase extends TileGeneric implements IPeriphe
     protected void readDescription( @Nonnull NBTTagCompound nbt )
     {
         super.readDescription( nbt );
-        m_dir = EnumFacing.byIndex( nbt.getInteger( "dir" ) );
+        m_dir = EnumFacing.getFront( nbt.getInteger( "dir" ) );
         m_anim = nbt.getInteger( "anim" );
         m_label = nbt.hasKey( "label" ) ? nbt.getString( "label" ) : null;
     }

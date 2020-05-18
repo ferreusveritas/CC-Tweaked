@@ -49,7 +49,7 @@ public class BlockPeripheral extends BlockGeneric
     {
         super( Material.ROCK );
         setHardness( 2.0f );
-        setTranslationKey( "computercraft:peripheral" );
+        setUnlocalizedName( "computercraft:peripheral" );
         setCreativeTab( ComputerCraft.mainCreativeTab );
         setDefaultState( blockState.getBaseState()
             .withProperty( FACING, EnumFacing.NORTH )
@@ -60,11 +60,11 @@ public class BlockPeripheral extends BlockGeneric
     @Override
     @Nonnull
     @SideOnly( Side.CLIENT )
-    public BlockRenderLayer getRenderLayer()
+    public BlockRenderLayer getBlockLayer()
     {
         return BlockRenderLayer.CUTOUT;
     }
-
+    
     @Nonnull
     @Override
     protected BlockStateContainer createBlockState()
@@ -81,7 +81,7 @@ public class BlockPeripheral extends BlockGeneric
         if( meta >= 2 && meta <= 5 )
         {
             state = state.withProperty( VARIANT, BlockPeripheralVariant.DiskDriveEmpty );
-            state = state.withProperty( FACING, EnumFacing.byIndex( meta ) );
+            state = state.withProperty( FACING, EnumFacing.getFront( meta ) );
         }
         else if( meta <= 9 )
         {
@@ -98,7 +98,7 @@ public class BlockPeripheral extends BlockGeneric
             else
             {
                 state = state.withProperty( VARIANT, BlockPeripheralVariant.WirelessModemOff );
-                state = state.withProperty( FACING, EnumFacing.byIndex( meta - 4 ) );
+                state = state.withProperty( FACING, EnumFacing.getFront( meta - 4 ) );
             }
         }
         else if( meta == 10 )
@@ -508,7 +508,8 @@ public class BlockPeripheral extends BlockGeneric
     public boolean causesSuffocation( IBlockState state )
     {
         // This normally uses the default state
-        return material.blocksMovement() && state.isOpaqueCube();
+    	    	
+        return blockMaterial.blocksMovement() && state.isOpaqueCube();
     }
 
     @Override

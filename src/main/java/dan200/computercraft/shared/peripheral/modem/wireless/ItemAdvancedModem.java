@@ -29,7 +29,7 @@ public class ItemAdvancedModem extends ItemPeripheralBase
     public ItemAdvancedModem( Block block )
     {
         super( block );
-        setTranslationKey( "computercraft:advanced_modem" );
+        setUnlocalizedName( "computercraft:advanced_modem" );
         setCreativeTab( ComputerCraft.mainCreativeTab );
     }
 

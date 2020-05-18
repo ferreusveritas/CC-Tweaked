@@ -318,7 +318,7 @@ public class TileMonitor extends TileGeneric implements ITilePeripheral, IPeriph
 
     public EnumFacing getFront()
     {
-        return m_dir <= 5 ? EnumFacing.byIndex( m_dir ) : m_dir <= 11 ? EnumFacing.DOWN : EnumFacing.UP;
+        return m_dir <= 5 ? EnumFacing.getFront( m_dir ) : m_dir <= 11 ? EnumFacing.DOWN : EnumFacing.UP;
     }
 
     public EnumFacing getRight()

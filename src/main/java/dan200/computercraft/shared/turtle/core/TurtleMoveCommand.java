@@ -87,9 +87,9 @@ public class TurtleMoveCommand implements ITurtleCommand
                 if( entityBB == null ) continue;
 
                 AxisAlignedBB pushedBB = entityBB.offset(
-                    direction.getXOffset(),
-                    direction.getYOffset(),
-                    direction.getZOffset()
+                    direction.getFrontOffsetX(),
+                    direction.getFrontOffsetY(),
+                    direction.getFrontOffsetZ()
                 );
                 if( !oldWorld.getCollisionBoxes( null, pushedBB ).isEmpty() )
                 {

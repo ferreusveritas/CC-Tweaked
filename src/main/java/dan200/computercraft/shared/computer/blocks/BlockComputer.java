@@ -39,7 +39,7 @@ public class BlockComputer extends BlockComputerBase
     {
         super( Material.ROCK );
         setHardness( 2.0f );
-        setTranslationKey( "computercraft:computer" );
+        setUnlocalizedName( "computercraft:computer" );
         setCreativeTab( ComputerCraft.mainCreativeTab );
         setDefaultState( blockState.getBaseState()
             .withProperty( Properties.FACING, EnumFacing.NORTH )
@@ -60,7 +60,7 @@ public class BlockComputer extends BlockComputerBase
     @Deprecated
     public IBlockState getStateFromMeta( int meta )
     {
-        EnumFacing dir = EnumFacing.byIndex( meta & 0x7 );
+        EnumFacing dir = EnumFacing.getFront( meta & 0x7 );
         if( dir.getAxis() == EnumFacing.Axis.Y )
         {
             dir = EnumFacing.NORTH;

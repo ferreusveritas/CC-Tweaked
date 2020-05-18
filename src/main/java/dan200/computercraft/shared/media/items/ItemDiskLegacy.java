@@ -31,7 +31,7 @@ public class ItemDiskLegacy extends Item implements IMedia, IColouredItem
     {
         setMaxStackSize( 1 );
         setHasSubtypes( true );
-        setTranslationKey( "computercraft:disk" );
+        setUnlocalizedName( "computercraft:disk" );
         setCreativeTab( ComputerCraft.mainCreativeTab );
     }
 

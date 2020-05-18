@@ -78,7 +78,7 @@ public class AddTurtleTool implements IAction
     public Optional<String> getValidationProblem()
     {
         if( craftItem.isEmpty() ) return Optional.of( "Crafting item stack is empty." );
-        if( craftItem.hasTagCompound() && !craftItem.getTagCompound().isEmpty() )
+        if( craftItem.hasTagCompound() && !craftItem.getTagCompound().hasNoTags() )
         {
             return Optional.of( "Crafting item has NBT." );
         }

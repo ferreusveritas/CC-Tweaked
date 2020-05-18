@@ -194,7 +194,7 @@ public final class ModelTransformer
         private BakedQuadBuilder( VertexFormat format )
         {
             this.format = format;
-            vertexData = new int[format.getSize()];
+            vertexData = new int[format.getNextOffset()];
         }
 
         @Nonnull

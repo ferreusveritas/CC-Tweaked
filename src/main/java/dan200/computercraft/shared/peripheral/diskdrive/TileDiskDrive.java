@@ -477,8 +477,8 @@ public class TileDiskDrive extends TilePeripheralBase implements DefaultInventor
         if( !destroyed )
         {
             EnumFacing dir = getDirection();
-            xOff = dir.getXOffset();
-            zOff = dir.getZOffset();
+            xOff = dir.getFrontOffsetX();
+            zOff = dir.getFrontOffsetZ();
         }
 
         BlockPos pos = getPos();

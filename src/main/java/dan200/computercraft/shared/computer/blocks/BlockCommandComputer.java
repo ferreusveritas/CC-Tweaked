@@ -39,7 +39,7 @@ public class BlockCommandComputer extends BlockComputerBase
         super( Material.IRON );
         setBlockUnbreakable();
         setResistance( 6000000.0F );
-        setTranslationKey( "computercraft:command_computer" );
+        setUnlocalizedName( "computercraft:command_computer" );
         setCreativeTab( ComputerCraft.mainCreativeTab );
         setDefaultState( blockState.getBaseState()
             .withProperty( Properties.FACING, EnumFacing.NORTH )
@@ -59,7 +59,7 @@ public class BlockCommandComputer extends BlockComputerBase
     @Deprecated
     public IBlockState getStateFromMeta( int meta )
     {
-        EnumFacing dir = EnumFacing.byIndex( meta & 0x7 );
+        EnumFacing dir = EnumFacing.getFront( meta & 0x7 );
         if( dir.getAxis() == EnumFacing.Axis.Y )
         {
             dir = EnumFacing.NORTH;

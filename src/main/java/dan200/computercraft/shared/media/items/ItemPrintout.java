@@ -44,7 +44,7 @@ public class ItemPrintout extends Item
     {
         setMaxStackSize( 1 );
         setHasSubtypes( true );
-        setTranslationKey( "computercraft:page" );
+        setUnlocalizedName( "computercraft:page" );
         setCreativeTab( ComputerCraft.mainCreativeTab );
     }
 
@@ -66,7 +66,7 @@ public class ItemPrintout extends Item
 
     @Nonnull
     @Override
-    public String getTranslationKey( @Nonnull ItemStack stack )
+    public String getUnlocalizedName( @Nonnull ItemStack stack )
     {
         Type type = getType( stack );
         switch( type )

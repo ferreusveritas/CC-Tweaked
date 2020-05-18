@@ -56,7 +56,7 @@ public abstract class ItemTurtleBase extends ItemComputerBase implements ITurtle
 
     @Nonnull
     @Override
-    public String getTranslationKey( @Nonnull ItemStack stack )
+    public String getUnlocalizedName( @Nonnull ItemStack stack )
     {
         ComputerFamily family = getFamily( stack );
         switch( family )
@@ -73,7 +73,7 @@ public abstract class ItemTurtleBase extends ItemComputerBase implements ITurtle
     @Override
     public String getItemStackDisplayName( @Nonnull ItemStack stack )
     {
-        String baseString = getTranslationKey( stack );
+        String baseString = getUnlocalizedName( stack );
         ITurtleUpgrade left = getUpgrade( stack, TurtleSide.Left );
         ITurtleUpgrade right = getUpgrade( stack, TurtleSide.Right );
         if( left != null && right != null )

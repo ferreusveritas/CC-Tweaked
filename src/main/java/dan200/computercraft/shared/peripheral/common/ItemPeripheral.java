@@ -26,7 +26,7 @@ public class ItemPeripheral extends ItemPeripheralBase
     public ItemPeripheral( Block block )
     {
         super( block );
-        setTranslationKey( "computercraft:peripheral" );
+        setUnlocalizedName( "computercraft:peripheral" );
         setCreativeTab( ComputerCraft.mainCreativeTab );
         setHasSubtypes( true );
     }

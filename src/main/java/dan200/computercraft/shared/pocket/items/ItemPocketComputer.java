@@ -55,7 +55,7 @@ public class ItemPocketComputer extends Item implements IComputerItem, IMedia, I
     {
         setMaxStackSize( 1 );
         setHasSubtypes( true );
-        setTranslationKey( "computercraft:pocket_computer" );
+        setUnlocalizedName( "computercraft:pocket_computer" );
         setCreativeTab( ComputerCraft.mainCreativeTab );
         addPropertyOverride( new ResourceLocation( ComputerCraft.MOD_ID, "state" ), COMPUTER_STATE );
         addPropertyOverride( new ResourceLocation( ComputerCraft.MOD_ID, "coloured" ), COMPUTER_COLOURED );
@@ -176,7 +176,7 @@ public class ItemPocketComputer extends Item implements IComputerItem, IMedia, I
 
     @Nonnull
     @Override
-    public String getTranslationKey( @Nonnull ItemStack stack )
+    public String getUnlocalizedName( @Nonnull ItemStack stack )
     {
         switch( getFamily( stack ) )
         {
@@ -192,7 +192,7 @@ public class ItemPocketComputer extends Item implements IComputerItem, IMedia, I
     @Override
     public String getItemStackDisplayName( @Nonnull ItemStack stack )
     {
-        String baseString = getTranslationKey( stack );
+        String baseString = getUnlocalizedName( stack );
         IPocketUpgrade upgrade = getUpgrade( stack );
         if( upgrade != null )
         {
