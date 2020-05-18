@@ -81,7 +81,8 @@ public class TurtleTool extends AbstractTurtleUpgrade
         );
         Minecraft mc = Minecraft.getMinecraft();
         return Pair.of(
-            mc.getRenderItem().getItemModelMesher().getItemModel( getCraftingItem() ),
+        	mc.getRenderItem().getItemModelWithOverrides(item, null, null),//Allow Adventurer's Toolbox tools to render
+            //mc.getRenderItem().getItemModelMesher().getItemModel( getCraftingItem() ),
             transform
         );
     }
