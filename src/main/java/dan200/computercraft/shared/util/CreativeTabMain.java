@@ -27,5 +27,4 @@ public class CreativeTabMain extends CreativeTabs
     {
         return new ItemStack( ComputerCraft.Blocks.computer );
     }
-
 }
