@@ -5,23 +5,24 @@
  */
 package dan200.computercraft.shared.peripheral.monitor;
 
-import dan200.computercraft.client.gui.FixedWidthFontRenderer;
-import dan200.computercraft.shared.common.ClientTerminal;
-import net.minecraft.client.renderer.GLAllocation;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.vertex.VertexBuffer;
-import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL30;
 import org.lwjgl.opengl.GL31;
 
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+import dan200.computercraft.shared.common.ClientTerminal;
+import net.minecraft.client.renderer.GLAllocation;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.renderer.vertex.VertexBuffer;
+import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public final class ClientMonitor extends ClientTerminal
 {
@@ -84,7 +85,7 @@ public final class ClientMonitor extends ClientTerminal
                 if( buffer != null ) return false;
 
                 deleteBuffers();
-                buffer = new VertexBuffer( FixedWidthFontRenderer.POSITION_COLOR_TEX );
+                buffer = new VertexBuffer( DefaultVertexFormats.POSITION_TEX_COLOR_NORMAL );
                 addMonitor();
                 return true;
 

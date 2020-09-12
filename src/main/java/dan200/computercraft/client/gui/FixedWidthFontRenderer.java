@@ -5,6 +5,11 @@
  */
 package dan200.computercraft.client.gui;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
+import org.lwjgl.opengl.GL11;
+
 import dan200.computercraft.client.FrameInfo;
 import dan200.computercraft.core.terminal.Terminal;
 import dan200.computercraft.core.terminal.TextBuffer;
@@ -15,29 +20,11 @@ import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.util.ResourceLocation;
-import org.lwjgl.opengl.GL11;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 public final class FixedWidthFontRenderer
 {
     private static final ResourceLocation FONT = new ResourceLocation( "computercraft", "textures/gui/term_font.png" );
-
-    /**
-     * Like {@link DefaultVertexFormats#POSITION_TEX_COLOR}, but flipped. This is backported from 1.15, hence the
-     * custom format.
-     */
-    public static final VertexFormat POSITION_COLOR_TEX = new VertexFormat();
-
-    static
-    {
-        POSITION_COLOR_TEX.addElement( DefaultVertexFormats.POSITION_3F );
-        POSITION_COLOR_TEX.addElement( DefaultVertexFormats.COLOR_4UB );
-        POSITION_COLOR_TEX.addElement( DefaultVertexFormats.TEX_2F );
-    }
 
     public static final int FONT_HEIGHT = 9;
     public static final int FONT_WIDTH = 6;
@@ -71,22 +58,18 @@ public final class FixedWidthFontRenderer
         int xStart = 1 + column * (FONT_WIDTH + 2);
         int yStart = 1 + row * (FONT_HEIGHT + 2);
 
-        buffer.pos( x, y, 0f ).color( r, g, b, 1.0f ).tex( xStart / WIDTH, yStart / WIDTH ).endVertex();
-        buffer.pos( x, y + FONT_HEIGHT, 0f ).color( r, g, b, 1.0f ).tex( xStart / WIDTH, (yStart + FONT_HEIGHT) / WIDTH ).endVertex();
-        buffer.pos( x + FONT_WIDTH, y, 0f ).color( r, g, b, 1.0f ).tex( (xStart + FONT_WIDTH) / WIDTH, yStart / WIDTH ).endVertex();
-        buffer.pos( x + FONT_WIDTH, y, 0f ).color( r, g, b, 1.0f ).tex( (xStart + FONT_WIDTH) / WIDTH, yStart / WIDTH ).endVertex();
-        buffer.pos( x, y + FONT_HEIGHT, 0f ).color( r, g, b, 1.0f ).tex( xStart / WIDTH, (yStart + FONT_HEIGHT) / WIDTH ).endVertex();
-        buffer.pos( x + FONT_WIDTH, y + FONT_HEIGHT, 0f ).color( r, g, b, 1.0f ).tex( (xStart + FONT_WIDTH) / WIDTH, (yStart + FONT_HEIGHT) / WIDTH ).endVertex();
+        buffer.pos( x, y, 0.0f ).tex( xStart / WIDTH, yStart / WIDTH ).color( r, g, b, 1.0f ).normal(0.0f, 0.0f, 1.0f).endVertex();
+        buffer.pos( x, y + FONT_HEIGHT, 0.0f ).tex( xStart / WIDTH, (yStart + FONT_HEIGHT) / WIDTH ).color( r, g, b, 1.0f ).normal(0.0f, 0.0f, 1.0f).endVertex();
+        buffer.pos( x + FONT_WIDTH, y + FONT_HEIGHT, 0.0f ).tex( (xStart + FONT_WIDTH) / WIDTH, (yStart + FONT_HEIGHT) / WIDTH ).color( r, g, b, 1.0f ).normal(0.0f, 0.0f, 1.0f).endVertex();
+        buffer.pos( x + FONT_WIDTH, y, 0.0f ).tex( (xStart + FONT_WIDTH) / WIDTH, yStart / WIDTH ).color( r, g, b, 1.0f ).normal(0.0f, 0.0f, 1.0f).endVertex();
     }
 
     private static void drawQuad( BufferBuilder buffer, float x, float y, float width, float height, float r, float g, float b )
     {
-        buffer.pos( x, y, 0 ).color( r, g, b, 1.0f ).tex( BACKGROUND_START, BACKGROUND_START ).endVertex();
-        buffer.pos( x, y + height, 0 ).color( r, g, b, 1.0f ).tex( BACKGROUND_START, BACKGROUND_END ).endVertex();
-        buffer.pos( x + width, y, 0 ).color( r, g, b, 1.0f ).tex( BACKGROUND_END, BACKGROUND_START ).endVertex();
-        buffer.pos( x + width, y, 0 ).color( r, g, b, 1.0f ).tex( BACKGROUND_END, BACKGROUND_START ).endVertex();
-        buffer.pos( x, y + height, 0 ).color( r, g, b, 1.0f ).tex( BACKGROUND_START, BACKGROUND_END ).endVertex();
-        buffer.pos( x + width, y + height, 0 ).color( r, g, b, 1.0f ).tex( BACKGROUND_END, BACKGROUND_END ).endVertex();
+        buffer.pos( x, y, 0.0f ).tex( BACKGROUND_START, BACKGROUND_START ).color( r, g, b, 1.0f ).normal(0.0f, 0.0f, 1.0f).endVertex();
+        buffer.pos( x, y + height, 0.0f ).tex( BACKGROUND_START, BACKGROUND_END ).color( r, g, b, 1.0f ).normal(0.0f, 0.0f, 1.0f).endVertex();
+        buffer.pos( x + width, y + height, 0.0f ).tex( BACKGROUND_END, BACKGROUND_END ).color( r, g, b, 1.0f ).normal(0.0f, 0.0f, 1.0f).endVertex();
+        buffer.pos( x + width, y, 0.0f ).tex( BACKGROUND_END, BACKGROUND_START ).color( r, g, b, 1.0f ).normal(0.0f, 0.0f, 1.0f).endVertex();
     }
 
     private static void drawQuad( BufferBuilder buffer, float x, float y, float width, float height, Palette palette, boolean greyscale, char colourIndex )
@@ -322,6 +305,6 @@ public final class FixedWidthFontRenderer
 
     public static void begin( BufferBuilder buffer )
     {
-        buffer.begin( GL11.GL_TRIANGLES, POSITION_COLOR_TEX );
+        buffer.begin( GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_COLOR_NORMAL );
     }
 }

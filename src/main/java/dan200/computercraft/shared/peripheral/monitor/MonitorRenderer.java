@@ -119,7 +119,7 @@ public enum MonitorRenderer
     private static MonitorRenderer best()
     {
         checkCapabilities();
-        if( textureBuffer ) return TBO;
+        //if( textureBuffer ) return TBO;  This currently doesn't work with optifine so we'll disable it.  It can still be explicitly set in the config file
         if( OpenGlHelper.vboSupported ) return VBO;
         return DISPLAY_LIST;
     }

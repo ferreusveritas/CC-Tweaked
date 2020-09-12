@@ -193,13 +193,15 @@ public class TileEntityMonitorRenderer extends TileEntitySpecialRenderer<TileMon
                 GL11.glBindTexture( GL31.GL_TEXTURE_BUFFER, monitor.tboTexture );
                 GlStateManager.setActiveTexture( GL13.GL_TEXTURE0 );
 
+                GlStateManager.disableCull();
+                
                 MonitorTextureBufferShader.setupUniform( width, height, terminal.getPalette(), !monitor.isColour() );
 
-                buffer.begin( GL11.GL_TRIANGLE_STRIP, DefaultVertexFormats.POSITION );
-                buffer.pos( -xMargin, -yMargin, 0 ).endVertex();
-                buffer.pos( -xMargin, pixelHeight + yMargin, 0 ).endVertex();
-                buffer.pos( pixelWidth + xMargin, -yMargin, 0 ).endVertex();
-                buffer.pos( pixelWidth + xMargin, pixelHeight + yMargin, 0 ).endVertex();
+                buffer.begin( GL11.GL_QUADS, DefaultVertexFormats.POSITION_NORMAL );
+                buffer.pos( -xMargin, -yMargin, 0 ).normal(0, 0, 1).endVertex();
+                buffer.pos( -xMargin, pixelHeight + yMargin, 0 ).normal(0, 0, 1).endVertex();
+                buffer.pos( pixelWidth + xMargin, pixelHeight + yMargin, 0 ).normal(0, 0, 1).endVertex();
+                buffer.pos( pixelWidth + xMargin, -yMargin, 0 ).normal(0, 0, 1).endVertex();
                 tessellator.draw();
 
                 OpenGlHelper.glUseProgram( 0 );
@@ -219,7 +221,7 @@ public class TileEntityMonitorRenderer extends TileEntitySpecialRenderer<TileMon
 
                 vbo.bindBuffer();
                 setupBufferFormat();
-                vbo.drawArrays( GL11.GL_TRIANGLES );
+                vbo.drawArrays( GL11.GL_QUADS );
                 vbo.unbindBuffer();
 
                 break;
@@ -260,14 +262,19 @@ public class TileEntityMonitorRenderer extends TileEntitySpecialRenderer<TileMon
 
     public static void setupBufferFormat()
     {
-        int stride = FixedWidthFontRenderer.POSITION_COLOR_TEX.getNextOffset();
+        int stride = DefaultVertexFormats.POSITION_TEX_COLOR_NORMAL.getNextOffset();//FixedWidthFontRenderer.POSITION_COLOR_TEX.getNextOffset();
+
         GlStateManager.glVertexPointer( 3, GL11.GL_FLOAT, stride, 0 );
         GlStateManager.glEnableClientState( GL11.GL_VERTEX_ARRAY );
 
-        GlStateManager.glColorPointer( 4, GL11.GL_UNSIGNED_BYTE, stride, 12 );
+        GlStateManager.glTexCoordPointer( 2, GL11.GL_FLOAT, stride, 12 );
+        GlStateManager.glEnableClientState( GL11.GL_TEXTURE_COORD_ARRAY );
+        
+        GlStateManager.glColorPointer( 4, GL11.GL_UNSIGNED_BYTE, stride, 20 );
         GlStateManager.glEnableClientState( GL11.GL_COLOR_ARRAY );
 
-        GlStateManager.glTexCoordPointer( 2, GL11.GL_FLOAT, stride, 16 );
-        GlStateManager.glEnableClientState( GL11.GL_TEXTURE_COORD_ARRAY );
+        GL11.glNormalPointer(GL11.GL_BYTE, stride, 24);
+        GlStateManager.glEnableClientState( GL11.GL_NORMAL_ARRAY );
+
     }
 }
